@@ -46,7 +46,7 @@ function build_targets
 {
     mkdir -p $BUILD_DIR
     cd $BUILD_DIR
-    cmake -DCMAKE_BUILD_TYPE=$TYPE -DCMAKE_C_COMPILER=$CCOMPILER -DCMAKE_CXX_COMPILER=$CXXCOMPILER ..
+    cmake -DCMAKE_BUILD_TYPE=$TYPE -DCMAKE_C_COMPILER=$CCOMPILER -DCMAKE_CXX_COMPILER=$CXXCOMPILER -DSLYRIS_BUILD_TESTS=ON ..
     make -j2
     cd ..
 }
@@ -74,5 +74,5 @@ parse_args "$@"
 BUILD_DIR=${CCOMPILER}-${TYPE}-build
 print_settings
 build_targets
-#run_ctest
-#run_xunit
+run_ctest
+run_xunit

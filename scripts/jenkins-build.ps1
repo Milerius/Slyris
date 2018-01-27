@@ -22,7 +22,7 @@ function build($type)
 {
     mkdir build-$type
     cd build-$type
-    $cmd = "-DCMAKE_BUILD_TYPE=$type"
+    $cmd = "-DCMAKE_BUILD_TYPE=$type -DSLYRIS_BUILD_TESTS=ON"
     cmake $cmd -G "Visual Studio 15 2017 Win64" ..
     cmake --build . --config $type -- /verbosity:minimal /m
 }
@@ -67,9 +67,9 @@ function publish_result($type)
 function run($compiler, $type, $oldtarget) {
    remove_old_build $oldtarget $type
    build $type
-   #run_xunit $type
-   #run_ctest $type
-   #publish_result $type
+   run_xunit $type
+   run_ctest $type
+   publish_result $type
 }
 
 print_settings $compiler $type
