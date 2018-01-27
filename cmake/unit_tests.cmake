@@ -5,9 +5,10 @@ macro(CREATE_UNIT_TEST EXECUTABLE_NAME CTEST_NAME PREFIX_NAME SOURCES)
     target_link_libraries(${EXECUTABLE_NAME} GTest::GTest GTest::Main)
     if (WIN32)
         target_compile_definitions(${EXECUTABLE_NAME}
-                PUBLIC /wd4251 /wd4275
                 PRIVATE _SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING)
-    endif(WIN32)
+        set_target_properties(${EXECUTABLE_NAME} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS} /wd4251 /wd4275")
+
+    endif (WIN32)
     set_target_properties(${EXECUTABLE_NAME}
             PROPERTIES
             ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib"
