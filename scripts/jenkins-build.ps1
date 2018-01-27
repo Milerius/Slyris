@@ -23,7 +23,7 @@ function build($type)
     mkdir build-$type
     cd build-$type
     $cmd = "-DCMAKE_BUILD_TYPE=$type"
-    cmake $cmd -DSLYRIS_BUILD_TESTS=ON -G "Visual Studio 15 2017 Win64" ..
+    cmake -DCMAKE_TOOLCHAIN_FILE=C:/Users/root/Desktop/vcpkg/scripts/buildsystems/vcpkg.cmake $cmd -DSLYRIS_BUILD_TESTS=ON -G "Visual Studio 15 2017 Win64" ..
     cmake --build . --config $type -- /verbosity:minimal /m
 }
 
