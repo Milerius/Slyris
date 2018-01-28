@@ -1,6 +1,5 @@
 include(GoogleTest)
 
-
 ###################### INTERNAL ####################################
 macro(__internal_specific_unit_test_platform_configuration EXECUTABLE_NAME)
     if (WIN32)
